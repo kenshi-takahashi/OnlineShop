@@ -31,8 +31,8 @@
               "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.BLL\\OnlineShop.BLL.csproj": {
                 "projectPath": "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.BLL\\OnlineShop.BLL.csproj"
               },
-              "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj": {
-                "projectPath": "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj"
+              "d:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj": {
+                "projectPath": "d:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj"
               }
             }
           }
@@ -46,6 +46,24 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.6.2, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.6.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -57,7 +75,15 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -85,8 +111,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj": {
-                "projectPath": "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj"
+              "d:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj": {
+                "projectPath": "d:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj"
               }
             }
           }
@@ -100,6 +126,16 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.9.2, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.3.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -111,18 +147,23 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj": {
+    "d:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj",
+        "projectUniqueName": "d:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj",
         "projectName": "OnlineShop.DAL",
-        "projectPath": "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj",
+        "projectPath": "d:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj",
         "packagesPath": "C:\\Users\\Kenshi\\.nuget\\packages\\",
-        "outputPath": "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\obj\\",
+        "outputPath": "d:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Kenshi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -150,6 +191,22 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.6, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -161,7 +218,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

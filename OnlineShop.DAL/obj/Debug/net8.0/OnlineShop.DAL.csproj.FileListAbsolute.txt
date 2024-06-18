@@ -12,3 +12,4 @@ d:\work-projects--labs\repos\OnlineShop\OnlineShop.DAL\obj\Debug\net8.0\refint\O
 d:\work-projects--labs\repos\OnlineShop\OnlineShop.DAL\obj\Debug\net8.0\OnlineShop.DAL.pdb
 d:\work-projects--labs\repos\OnlineShop\OnlineShop.DAL\obj\Debug\net8.0\OnlineShop.DAL.genruntimeconfig.cache
 d:\work-projects--labs\repos\OnlineShop\OnlineShop.DAL\obj\Debug\net8.0\ref\OnlineShop.DAL.dll
+d:\work-projects--labs\repos\OnlineShop\OnlineShop.DAL\obj\Debug\net8.0\OnlineShop.DAL.sourcelink.json

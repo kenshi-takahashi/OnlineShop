@@ -13,3 +13,4 @@ d:\work-projects--labs\repos\OnlineShop\OnlineShop.BLL\obj\Debug\net8.0\OnlineSh
 d:\work-projects--labs\repos\OnlineShop\OnlineShop.BLL\obj\Debug\net8.0\refint\OnlineShop.BLL.dll
 d:\work-projects--labs\repos\OnlineShop\OnlineShop.BLL\obj\Debug\net8.0\OnlineShop.BLL.pdb
 D:\work-projects--labs\repos\OnlineShop\OnlineShop.BLL\obj\Debug\net8.0\ref\OnlineShop.BLL.dll
+d:\work-projects--labs\repos\OnlineShop\OnlineShop.BLL\obj\Debug\net8.0\OnlineShop.BLL.sourcelink.json
