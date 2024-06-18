@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-public class ApplicationDbContext : DbContext
+public class OnlineShopDbContext : DbContext
 {
     public DbSet<Category> Categories { get; set; }
     public DbSet<Product> Products { get; set; }
