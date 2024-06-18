@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.BLL\\OnlineShop.BLL.csproj": {}
+    "G:\\Practice\\OnlineShop\\OnlineShop\\OnlineShop.BLL\\OnlineShop.BLL.csproj": {}
   },
   "projects": {
-    "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.BLL\\OnlineShop.BLL.csproj": {
+    "G:\\Practice\\OnlineShop\\OnlineShop\\OnlineShop.BLL\\OnlineShop.BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.BLL\\OnlineShop.BLL.csproj",
+        "projectUniqueName": "G:\\Practice\\OnlineShop\\OnlineShop\\OnlineShop.BLL\\OnlineShop.BLL.csproj",
         "projectName": "OnlineShop.BLL",
-        "projectPath": "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.BLL\\OnlineShop.BLL.csproj",
-        "packagesPath": "C:\\Users\\Kenshi\\.nuget\\packages\\",
-        "outputPath": "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.BLL\\obj\\",
+        "projectPath": "G:\\Practice\\OnlineShop\\OnlineShop\\OnlineShop.BLL\\OnlineShop.BLL.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "G:\\Practice\\OnlineShop\\OnlineShop\\OnlineShop.BLL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "G:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Kenshi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "d:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj": {
-                "projectPath": "d:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj"
+              "G:\\Practice\\OnlineShop\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj": {
+                "projectPath": "G:\\Practice\\OnlineShop\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj"
               }
             }
           }
@@ -38,6 +43,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -69,21 +79,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "d:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj": {
+    "G:\\Practice\\OnlineShop\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj",
+        "projectUniqueName": "G:\\Practice\\OnlineShop\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj",
         "projectName": "OnlineShop.DAL",
-        "projectPath": "d:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj",
-        "packagesPath": "C:\\Users\\Kenshi\\.nuget\\packages\\",
-        "outputPath": "d:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\obj\\",
+        "projectPath": "G:\\Practice\\OnlineShop\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "G:\\Practice\\OnlineShop\\OnlineShop\\OnlineShop.DAL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "G:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Kenshi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -91,6 +105,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -103,6 +118,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -140,7 +160,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

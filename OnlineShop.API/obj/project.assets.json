@@ -3091,19 +3091,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Kenshi\\.nuget\\packages\\": {}
+    "C:\\Users\\user\\.nuget\\packages\\": {},
+    "G:\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.API\\OnlineShop.API.csproj",
+      "projectUniqueName": "G:\\Practice\\OnlineShop\\OnlineShop\\OnlineShop.API\\OnlineShop.API.csproj",
       "projectName": "OnlineShop.API",
-      "projectPath": "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.API\\OnlineShop.API.csproj",
-      "packagesPath": "C:\\Users\\Kenshi\\.nuget\\packages\\",
-      "outputPath": "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.API\\obj\\",
+      "projectPath": "G:\\Practice\\OnlineShop\\OnlineShop\\OnlineShop.API\\OnlineShop.API.csproj",
+      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+      "outputPath": "G:\\Practice\\OnlineShop\\OnlineShop\\OnlineShop.API\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "G:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Kenshi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3111,17 +3116,18 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.BLL\\OnlineShop.BLL.csproj": {
-              "projectPath": "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.BLL\\OnlineShop.BLL.csproj"
+            "G:\\Practice\\OnlineShop\\OnlineShop\\OnlineShop.BLL\\OnlineShop.BLL.csproj": {
+              "projectPath": "G:\\Practice\\OnlineShop\\OnlineShop\\OnlineShop.BLL\\OnlineShop.BLL.csproj"
             },
-            "d:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj": {
-              "projectPath": "d:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj"
+            "G:\\Practice\\OnlineShop\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj": {
+              "projectPath": "G:\\Practice\\OnlineShop\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj"
             }
           }
         }
@@ -3130,6 +3136,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -3172,7 +3183,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
