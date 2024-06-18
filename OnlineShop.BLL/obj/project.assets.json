@@ -2880,19 +2880,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Kenshi\\.nuget\\packages\\": {}
+    "C:\\Users\\WelCOM\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.BLL\\OnlineShop.BLL.csproj",
+      "projectUniqueName": "C:\\Users\\WelCOM\\OnlineShop\\OnlineShop.BLL\\OnlineShop.BLL.csproj",
       "projectName": "OnlineShop.BLL",
-      "projectPath": "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.BLL\\OnlineShop.BLL.csproj",
-      "packagesPath": "C:\\Users\\Kenshi\\.nuget\\packages\\",
-      "outputPath": "D:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.BLL\\obj\\",
+      "projectPath": "C:\\Users\\WelCOM\\OnlineShop\\OnlineShop.BLL\\OnlineShop.BLL.csproj",
+      "packagesPath": "C:\\Users\\WelCOM\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\WelCOM\\OnlineShop\\OnlineShop.BLL\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Kenshi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\WelCOM\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2906,8 +2911,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "d:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj": {
-              "projectPath": "d:\\work-projects--labs\\repos\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj"
+            "C:\\Users\\WelCOM\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj": {
+              "projectPath": "C:\\Users\\WelCOM\\OnlineShop\\OnlineShop.DAL\\OnlineShop.DAL.csproj"
             }
           }
         }
