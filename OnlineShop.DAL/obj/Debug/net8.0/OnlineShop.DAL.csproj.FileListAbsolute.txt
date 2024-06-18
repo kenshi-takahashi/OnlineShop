@@ -1,0 +1,14 @@
+d:\work-projects--labs\repos\OnlineShop\OnlineShop.DAL\bin\Debug\net8.0\OnlineShop.DAL.deps.json
+d:\work-projects--labs\repos\OnlineShop\OnlineShop.DAL\bin\Debug\net8.0\OnlineShop.DAL.runtimeconfig.json
+d:\work-projects--labs\repos\OnlineShop\OnlineShop.DAL\bin\Debug\net8.0\OnlineShop.DAL.dll
+d:\work-projects--labs\repos\OnlineShop\OnlineShop.DAL\bin\Debug\net8.0\OnlineShop.DAL.pdb
+d:\work-projects--labs\repos\OnlineShop\OnlineShop.DAL\obj\Debug\net8.0\OnlineShop.DAL.csproj.AssemblyReference.cache
+d:\work-projects--labs\repos\OnlineShop\OnlineShop.DAL\obj\Debug\net8.0\OnlineShop.DAL.GeneratedMSBuildEditorConfig.editorconfig
+d:\work-projects--labs\repos\OnlineShop\OnlineShop.DAL\obj\Debug\net8.0\OnlineShop.DAL.AssemblyInfoInputs.cache
+d:\work-projects--labs\repos\OnlineShop\OnlineShop.DAL\obj\Debug\net8.0\OnlineShop.DAL.AssemblyInfo.cs
+d:\work-projects--labs\repos\OnlineShop\OnlineShop.DAL\obj\Debug\net8.0\OnlineShop.DAL.csproj.CoreCompileInputs.cache
+d:\work-projects--labs\repos\OnlineShop\OnlineShop.DAL\obj\Debug\net8.0\OnlineShop.DAL.dll
+d:\work-projects--labs\repos\OnlineShop\OnlineShop.DAL\obj\Debug\net8.0\refint\OnlineShop.DAL.dll
+d:\work-projects--labs\repos\OnlineShop\OnlineShop.DAL\obj\Debug\net8.0\OnlineShop.DAL.pdb
+d:\work-projects--labs\repos\OnlineShop\OnlineShop.DAL\obj\Debug\net8.0\OnlineShop.DAL.genruntimeconfig.cache
+d:\work-projects--labs\repos\OnlineShop\OnlineShop.DAL\obj\Debug\net8.0\ref\OnlineShop.DAL.dll

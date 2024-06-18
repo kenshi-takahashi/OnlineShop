@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShop.DAL", "OnlineShop.DAL\OnlineShop.DAL.csproj", "{D3DF1CE9-DF5C-47D7-B173-4555483AEDD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShop.BLL", "OnlineShop.BLL\OnlineShop.BLL.csproj", "{053594B6-C112-4298-8041-63E055E39BEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShop.API", "OnlineShop.API\OnlineShop.API.csproj", "{333B4083-D610-471E-99E7-D77E26D9D3D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3DF1CE9-DF5C-47D7-B173-4555483AEDD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3DF1CE9-DF5C-47D7-B173-4555483AEDD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3DF1CE9-DF5C-47D7-B173-4555483AEDD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3DF1CE9-DF5C-47D7-B173-4555483AEDD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{053594B6-C112-4298-8041-63E055E39BEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{053594B6-C112-4298-8041-63E055E39BEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{053594B6-C112-4298-8041-63E055E39BEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{053594B6-C112-4298-8041-63E055E39BEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{333B4083-D610-471E-99E7-D77E26D9D3D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{333B4083-D610-471E-99E7-D77E26D9D3D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{333B4083-D610-471E-99E7-D77E26D9D3D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{333B4083-D610-471E-99E7-D77E26D9D3D5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
