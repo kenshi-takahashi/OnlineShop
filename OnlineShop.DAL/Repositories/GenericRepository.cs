@@ -35,10 +35,8 @@ public class GenericRepository<T> where T : class
     public async Task DeleteAsync(int id)
     {
         var entity = await _context.Set<T>().FindAsync(id);
-        if (entity != null)
-        {
-            _context.Set<T>().Remove(entity);
-            await _context.SaveChangesAsync();
-        }
+        _context.Set<T>().Remove(entity);
+         await _context.SaveChangesAsync();
+
     }
 }
