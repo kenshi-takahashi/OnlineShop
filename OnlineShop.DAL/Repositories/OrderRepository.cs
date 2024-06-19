@@ -1,56 +1,33 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+
 using Microsoft.EntityFrameworkCore;
-using MyOnlineShop.DAL.Repositories;
+using MyOnlineShop.DAL.Interfaces;
 
 namespace MyOnlineShop.DAL.Repositories
 {
-    public class OrderRepository : IOrderRepository
+    public class OrderRepository : GenericRepository<Order>, IOrderRepository
     {
-        private readonly OnlineShopDbContext _context;
-
-        public OrderRepository(OnlineShopDbContext context)
+        public OrderRepository(OnlineShopDbContext context) : base(context)
         {
-            _context = context;
-        }
-
-        public async Task CreateOrderAsync(Order order)
-        {
-            _context.Orders.Add(order);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<Order> GetOrderByIdAsync(int orderId)
-        {
-            return await _context.Orders.FindAsync(orderId);
-        }
-
-        public async Task<IEnumerable<Order>> GetAllOrdersAsync()
-        {
-            return await _context.Set<Order>().ToListAsync();
         }
 
         public async Task<IEnumerable<Order>> GetOrdersByUserIdAsync(int userId)
         {
             return await _context.Orders
                 .Where(o => o.UserId == userId)
+                .AsNoTracking()
                 .ToListAsync();
         }
 
-        public async Task UpdateOrderAsync(Order order)
+        public async Task<Order> GetOrderWithDetailsByIdAsync(int orderId)
         {
-            _context.Orders.Update(order);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task DeleteOrderAsync(int orderId)
-        {
-            var order = await _context.Orders.FindAsync(orderId);
-            if (order != null)
-            {
-                _context.Orders.Remove(order);
-                await _context.SaveChangesAsync();
-            }
+            return await _context.Orders
+                .Include(o => o.OrderItems)
+                .ThenInclude(oi => oi.Product)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(o => o.OrderId == orderId);
         }
     }
 }
