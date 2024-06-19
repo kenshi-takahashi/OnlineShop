@@ -1,8 +1,10 @@
-public interface ICategoryRepository
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+
+namespace MyOnlineShop.DAL.Interfaces
 {
-    Task<Category> GetByIdAsync(int id);
-    Task<IEnumerable<Category>> GetAllAsync();
-    Task AddAsync(Category category);
-    Task UpdateAsync(Category category);
-    Task DeleteAsync(int id);
+	public interface ICategoryRepository : IGenericRepository<Category>
+	{
+	}
 }
