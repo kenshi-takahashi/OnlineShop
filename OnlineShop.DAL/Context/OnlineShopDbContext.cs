@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-
+using System.Reflection;
 public class OnlineShopDbContext : DbContext
 {
     public DbSet<Category> Categories { get; set; }
