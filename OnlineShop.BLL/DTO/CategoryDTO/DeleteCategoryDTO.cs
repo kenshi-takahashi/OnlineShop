@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineShop.BLL.Validations.CategoryValidators
+namespace OnlineShop.BLL.DTO.CategoryDTO
 {
-    internal class UpdateCategoryRequestValidator
+    public class DeleteCategoryDTO
     {
+        public int Id { get; set; }
     }
 }

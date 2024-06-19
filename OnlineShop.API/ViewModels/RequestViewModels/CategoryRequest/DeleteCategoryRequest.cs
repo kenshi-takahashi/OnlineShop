@@ -2,6 +2,6 @@
 {
     public class DeleteCategoryRequest
     {
-        public int CategoryId { get; set; }
+        public int Id { get; set; }
     }
 }

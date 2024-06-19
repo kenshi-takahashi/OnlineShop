@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineShop.BLL.Validations.ProductValidators
+namespace OnlineShop.BLL.DTO.ProductDTO
 {
-    internal class CreateProductRequestValidator
+    public class DeleteProductDTO
     {
+        public int Id { get; set; }
     }
 }
