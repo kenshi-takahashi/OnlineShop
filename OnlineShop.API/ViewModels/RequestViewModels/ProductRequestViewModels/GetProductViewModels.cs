@@ -1,6 +1,6 @@
 ﻿namespace OnlineShop.API.Models.RequestModels.ProductRequest
 {
-    public class GetProductRequest
+    public class GetProductViewModels
     {
         public int Id { get; set; }
     }

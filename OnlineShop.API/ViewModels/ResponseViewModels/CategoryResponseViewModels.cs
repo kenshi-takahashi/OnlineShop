@@ -1,9 +1,9 @@
 ﻿namespace OnlineShop.API.Models.ResponseModels
 {
-    public class CategoryResponse
+    public class CategoryResponseViewModels
     {
         public int CategoryId { get; set; }
         public string Name { get; set; }
-        public ICollection<ProductResponse> Products { get; set; }
+        public ICollection<ProductResponseViewModels> Products { get; set; }
     }
 }

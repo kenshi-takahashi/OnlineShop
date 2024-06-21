@@ -1,14 +1,15 @@
-using OnlineShop.BLL.DTO.CategoryDTO;
+using OnlineShop.BLL.DTO.RequestDTO.CategoryRequestDTO;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OnlineShop.BLL.Interfaces
 {
     public interface ICategoryService
     {
-        ReadCategoryDTO GetCategoryById(int categoryId);
-        IEnumerable<ReadCategoryDTO> GetAllCategories();
-        void CreateCategory(CreateCategoryDTO category);
-        void UpdateCategory(UpdateCategoryDTO category);
-        void DeleteCategory(int categoryId);
-        // Другие методы, связанные с категориями
+        Task<ReadCategoryDTO> GetCategoryByIdAsync(int categoryId);
+        Task<IEnumerable<ReadCategoryDTO>> GetAllCategoriesAsync();
+        Task CreateCategoryAsync(CreateCategoryDTO category);
+        Task UpdateCategoryAsync(UpdateCategoryDTO category);
+        Task DeleteCategoryAsync(int categoryId);
     }
 }

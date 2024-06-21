@@ -1,56 +1,43 @@
-﻿using System.Text.RegularExpressions;
-using OnlineShop.BLL.DTO;
-using OnlineShop.BLL.DTO.ProductDTO;
+﻿using FluentValidation;
+using OnlineShop.BLL.DTO.RequestDTO.ProductRequestDTO;
 using OnlineShop.BLL.Interfaces;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace OnlineShop.BLL.Validations
 {
-    public class CreateProductValidator
+    public class CreateProductValidator : AbstractValidator<CreateProductDTO>
     {
         private readonly IProductService _productService;
 
         public CreateProductValidator(IProductService productService)
         {
             _productService = productService;
+
+            RuleFor(product => product.Name)
+                .MustAsync(BeUniqueName).WithMessage("Имя продукта должно быть уникальным.")
+                .Must(NotStartWithDigitOrSymbol).WithMessage("Имя продукта не должно начинаться с цифры или символа.")
+                .Must(NotContainDigitsOrSymbols).WithMessage("Имя продукта не должно содержать цифр или символов.");
+
+            RuleFor(product => product.Description)
+                .Must(IsValidDescription).WithMessage("Описание продукта должно содержать хотя бы 10 символов и не превышать 1000 символов.");
         }
 
-        public void ValidateCreateProduct(CreateProductDTO productDTO)
+        private async Task<bool> BeUniqueName(string name, CancellationToken cancellationToken)
         {
-            if (!IsNameUnique(productDTO.Name))
-            {
-                throw new CreateProductValidationException("Имя продукта должно быть уникальным.");
-            }
-
-            if (StartsWithDigitOrSymbol(productDTO.Name))
-            {
-                throw new CreateProductValidationException("Имя продукта не должно начинаться с цифры или символа.");
-            }
-
-            if (ContainsDigitsOrSymbols(productDTO.Name))
-            {
-                throw new CreateProductValidationException("Имя продукта не должно содержать цифр или символов.");
-            }
-
-            if (!IsValidDescription(productDTO.Description))
-            {
-                throw new CreateProductValidationException("Описание продукта должно содержать хотя бы 10 символов и не превышать 1000 символов.");
-            }
-        }
-
-        private bool IsNameUnique(string name)
-        {
-            var products = _productService.GetAllProducts();
+            var products = await _productService.GetAllProductsAsync();
             return !products.Any(p => p.Name.Equals(name, System.StringComparison.OrdinalIgnoreCase));
         }
 
-        private bool StartsWithDigitOrSymbol(string name)
+        private bool NotStartWithDigitOrSymbol(string name)
         {
-            return Regex.IsMatch(name, @"^[\d\W]");
+            return !Regex.IsMatch(name, @"^[\d\W]");
         }
 
-        private bool ContainsDigitsOrSymbols(string name)
+        private bool NotContainDigitsOrSymbols(string name)
         {
-            return Regex.IsMatch(name, @"[\d\W]");
+            return !Regex.IsMatch(name, @"[\d\W]");
         }
 
         private bool IsValidDescription(string description)

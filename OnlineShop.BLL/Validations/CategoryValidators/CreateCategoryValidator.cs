@@ -1,60 +1,47 @@
-﻿using System.Text.RegularExpressions;
-using OnlineShop.BLL.DTO;
-using OnlineShop.BLL.DTO.CategoryDTO;
+﻿using FluentValidation;
+using OnlineShop.BLL.DTO.RequestDTO.CategoryRequestDTO;
 using OnlineShop.BLL.Interfaces;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace OnlineShop.BLL.Validations
 {
-    public class CreateCategoryValidator
+    public class CreateCategoryValidator : AbstractValidator<CreateCategoryDTO>
     {
         private readonly ICategoryService _categoryService;
 
         public CreateCategoryValidator(ICategoryService categoryService)
         {
             _categoryService = categoryService;
+
+            RuleFor(category => category.Name)
+                .MustAsync(BeUniqueName).WithMessage("Имя категории должно быть уникальным.")
+                .Must(NotStartWithDigitOrSymbol).WithMessage("Имя категории не должно начинаться с цифры или символа.")
+                .Must(NotContainDigitsOrSymbols).WithMessage("Имя категории не должно содержать цифр или символов.");
         }
 
-        public void ValidateCreateCategory(CreateCategoryDTO categoryDTO)
+        private async Task<bool> BeUniqueName(string name, CancellationToken cancellationToken)
         {
-            if (!IsNameUnique(categoryDTO.Name))
-            {
-                throw new CreateCategoryValidationException("Имя категории должно быть уникальным.");
-            }
-
-            if (StartsWithDigitOrSymbol(categoryDTO.Name))
-            {
-                throw new CreateCategoryValidationException("Имя категории не должно начинаться с цифры или символа.");
-            }
-
-            if (ContainsDigitsOrSymbols(categoryDTO.Name))
-            {
-                throw new CreateCategoryValidationException("Имя категории не должно содержать цифр или символов.");
-            }
-        }
-
-        private bool IsNameUnique(string name)
-        {
-            var categories = _categoryService.GetAllCategories();
+            var categories = await _categoryService.GetAllCategoriesAsync();
             return !categories.Any(c => c.Name.Equals(name, System.StringComparison.OrdinalIgnoreCase));
         }
 
-        private bool StartsWithDigitOrSymbol(string name)
+        private bool NotStartWithDigitOrSymbol(string name)
         {
-            return Regex.IsMatch(name, @"^[\d\W]");
+            return !Regex.IsMatch(name, @"^[\d\W]");
         }
 
-        private bool ContainsDigitsOrSymbols(string name)
+        private bool NotContainDigitsOrSymbols(string name)
         {
-            return Regex.IsMatch(name, @"[\d\W]");
+            return !Regex.IsMatch(name, @"[\d\W]");
         }
     }
 
-    // Кастомное исключение для валидации
     public class CreateCategoryValidationException : Exception
     {
         public CreateCategoryValidationException(string message) : base(message) { }
 
-        // Добавим конструктор по умолчанию, если это нужно
         public CreateCategoryValidationException() : base() { }
     }
 }
+

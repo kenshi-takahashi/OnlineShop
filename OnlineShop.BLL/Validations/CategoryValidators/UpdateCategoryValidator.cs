@@ -1,32 +1,26 @@
-﻿using System.Text.RegularExpressions;
-using OnlineShop.BLL.DTO;
-using OnlineShop.BLL.DTO.CategoryDTO;
+﻿using FluentValidation;
+using OnlineShop.BLL.DTO.RequestDTO.CategoryRequestDTO;
+using System.Text.RegularExpressions;
 
 namespace OnlineShop.BLL.Validations
 {
-    public class UpdateCategoryValidator
+    public class UpdateCategoryValidator : AbstractValidator<UpdateCategoryDTO>
     {
-        public void ValidateUpdateCategory(UpdateCategoryDTO categoryDTO)
+        public UpdateCategoryValidator()
         {
-            if (StartsWithDigitOrSymbol(categoryDTO.Name))
-            {
-                throw new UpdateCategoryValidationException("Имя категории не должно начинаться с цифры или символа.");
-            }
-
-            if (ContainsDigitsOrSymbols(categoryDTO.Name))
-            {
-                throw new UpdateCategoryValidationException("Имя категории не должно содержать цифр или символов.");
-            }
+            RuleFor(category => category.Name)
+                .Must(NotStartWithDigitOrSymbol).WithMessage("Имя категории не должно начинаться с цифры или символа.")
+                .Must(NotContainDigitsOrSymbols).WithMessage("Имя категории не должно содержать цифр или символов.");
         }
 
-        private bool StartsWithDigitOrSymbol(string name)
+        private bool NotStartWithDigitOrSymbol(string name)
         {
-            return Regex.IsMatch(name, @"^[\d\W]");
+            return !Regex.IsMatch(name, @"^[\d\W]");
         }
 
-        private bool ContainsDigitsOrSymbols(string name)
+        private bool NotContainDigitsOrSymbols(string name)
         {
-            return Regex.IsMatch(name, @"[\d\W]");
+            return !Regex.IsMatch(name, @"[\d\W]");
         }
     }
 

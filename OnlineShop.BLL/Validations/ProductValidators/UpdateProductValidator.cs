@@ -1,38 +1,29 @@
-﻿using System.Text.RegularExpressions;
-using OnlineShop.BLL.DTO;
-using OnlineShop.BLL.DTO.ProductDTO;
-using OnlineShop.BLL.Interfaces;
+﻿using FluentValidation;
+using OnlineShop.BLL.DTO.RequestDTO.ProductRequestDTO;
+using System.Text.RegularExpressions;
 
 namespace OnlineShop.BLL.Validations
 {
-    public class UpdateProductValidator
+    public class UpdateProductValidator : AbstractValidator<UpdateProductDTO>
     {
-        public void ValidateUpdateProduct(UpdateProductDTO productDTO)
+        public UpdateProductValidator()
         {
-            if (StartsWithDigitOrSymbol(productDTO.Name))
-            {
-                throw new UpdateProductValidationException("Имя продукта не должно начинаться с цифры или символа.");
-            }
+            RuleFor(product => product.Name)
+                .Must(NotStartWithDigitOrSymbol).WithMessage("Имя продукта не должно начинаться с цифры или символа.")
+                .Must(NotContainDigitsOrSymbols).WithMessage("Имя продукта не должно содержать цифр или символов.");
 
-            if (ContainsDigitsOrSymbols(productDTO.Name))
-            {
-                throw new UpdateProductValidationException("Имя продукта не должно содержать цифр или символов.");
-            }
-
-            if (!IsValidDescription(productDTO.Description))
-            {
-                throw new UpdateProductValidationException("Описание продукта должно содержать хотя бы 10 символов и не превышать 1000 символов.");
-            }
+            RuleFor(product => product.Description)
+                .Must(IsValidDescription).WithMessage("Описание продукта должно содержать хотя бы 10 символов и не превышать 1000 символов.");
         }
 
-        private bool StartsWithDigitOrSymbol(string name)
+        private bool NotStartWithDigitOrSymbol(string name)
         {
-            return Regex.IsMatch(name, @"^[\d\W]");
+            return !Regex.IsMatch(name, @"^[\d\W]");
         }
 
-        private bool ContainsDigitsOrSymbols(string name)
+        private bool NotContainDigitsOrSymbols(string name)
         {
-            return Regex.IsMatch(name, @"[\d\W]");
+            return !Regex.IsMatch(name, @"[\d\W]");
         }
 
         private bool IsValidDescription(string description)

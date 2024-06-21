@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineShop.BLL.DTO.ProductDTO
+namespace OnlineShop.BLL.DTO.RequestDTO.CategoryRequestDTO
 {
-    public class DeleteProductDTO
+    public class DeleteCategoryDTO
     {
         public int Id { get; set; }
     }

@@ -2,7 +2,7 @@
 
 namespace OnlineShop.API.Models.RequestModels.CategoryRequest
 {
-    public class UpdateCategoryRequest
+    public class UpdateCategoryViewModels
     {
         public int Id { get; set; }
 

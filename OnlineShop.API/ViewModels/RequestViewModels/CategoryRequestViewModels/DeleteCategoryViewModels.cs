@@ -1,6 +1,6 @@
 ﻿namespace OnlineShop.API.Models.RequestModels.CategoryRequest
 {
-    public class DeleteCategoryRequest
+    public class DeleteCategoryViewModels
     {
         public int Id { get; set; }
     }

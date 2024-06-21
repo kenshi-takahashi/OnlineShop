@@ -2,9 +2,10 @@
 
 namespace OnlineShop.API.Models.RequestModels.ProductRequest
 {
-    public class CreateProductRequest
+    public class UpdateProductViewModels
     {
-        [Required(ErrorMessage = "Имя продукта обязательно для заполнения.")]
+        public int Id { get; set; }
+
         [StringLength(100, MinimumLength = 3, ErrorMessage = "Имя продукта должно быть от 3 до 100 символов.")]
         public string Name { get; set; }
 
