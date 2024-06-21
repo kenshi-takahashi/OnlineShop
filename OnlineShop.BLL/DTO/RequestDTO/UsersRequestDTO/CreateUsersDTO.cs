@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnlineShop.BLL.DTO.RequestDTO.UsersRequestDTO
 {
-    internal class CreateUsersDTO
+    public class CreateUsersDTO
     {
         public int Id { get; set; }
         public string Username { get; set; }

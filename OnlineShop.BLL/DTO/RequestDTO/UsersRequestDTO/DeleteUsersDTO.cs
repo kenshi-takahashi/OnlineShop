@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnlineShop.BLL.DTO.RequestDTO.UsersRequestDTO
 {
-    internal class DeleteUsersDTO
+    public class DeleteUsersDTO
     {
         public int Id { get; set; }
     }
