@@ -1,8 +1,6 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-public class GenericRepository<T> where T : class
+public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
     protected readonly OnlineShopDbContext _context;
     public GenericRepository(OnlineShopDbContext context)
@@ -17,7 +15,7 @@ public class GenericRepository<T> where T : class
 
     public async Task<IEnumerable<T>> GetAllAsync()
     {
-        return await _context.Set<T>().ToListAsync();
+        return await _context.Set<T>().AsNoTracking().ToListAsync();
     }
 
     public async Task AddAsync(T entity)
@@ -35,10 +33,8 @@ public class GenericRepository<T> where T : class
     public async Task DeleteAsync(int id)
     {
         var entity = await _context.Set<T>().FindAsync(id);
-        if (entity != null)
-        {
-            _context.Set<T>().Remove(entity);
-            await _context.SaveChangesAsync();
-        }
+        _context.Set<T>().Remove(entity);
+         await _context.SaveChangesAsync();
+
     }
 }

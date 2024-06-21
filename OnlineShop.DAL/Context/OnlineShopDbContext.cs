@@ -1,6 +1,6 @@
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-
+using System.Reflection;
 public class OnlineShopDbContext : DbContext
 {
     public OnlineShopDbContext(DbContextOptions<OnlineShopDbContext> options) : base(options) { }
@@ -14,6 +14,7 @@ public class OnlineShopDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }
