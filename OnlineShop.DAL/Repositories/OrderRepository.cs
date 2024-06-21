@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using MyOnlineShop.DAL.Interfaces;
 
 namespace MyOnlineShop.DAL.Repositories
@@ -27,7 +23,7 @@ namespace MyOnlineShop.DAL.Repositories
                 .Include(o => o.OrderItems)
                 .ThenInclude(oi => oi.Product)
                 .AsNoTracking()
-                .FirstOrDefaultAsync(o => o.OrderId == orderId);
+                .FirstOrDefaultAsync(o => o.Id == orderId);
         }
     }
 }

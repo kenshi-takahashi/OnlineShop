@@ -20,9 +20,9 @@ namespace MyOnlineShop.DAL.Repositories
 		public async Task<Product> GetProductWithDetailsByIdAsync(int productId)
 		{
 			return await _context.Products
-				.Include(p => p.Category)
+                .Include(p => p.Category)
 				.AsNoTracking()
-				.FirstOrDefaultAsync(p => p.ProductId == productId);
+				.FirstOrDefaultAsync(p => p.Id == productId);
 		}
 	}
 }
