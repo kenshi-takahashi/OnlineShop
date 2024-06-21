@@ -1,7 +1,9 @@
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 public class OnlineShopDbContext : DbContext
 {
+    public OnlineShopDbContext(DbContextOptions<OnlineShopDbContext> options) : base(options) { }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<OrderItem> OrderItems { get; set; }
