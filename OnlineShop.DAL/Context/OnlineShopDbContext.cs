@@ -1,5 +1,6 @@
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-
+using System.Reflection;
 public class OnlineShopDbContext : DbContext
 {
     public OnlineShopDbContext(DbContextOptions<OnlineShopDbContext> options) : base(options) { }
@@ -13,12 +14,7 @@ public class OnlineShopDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
-        modelBuilder.ApplyConfiguration(new CategoryConfiguration());
-        modelBuilder.ApplyConfiguration(new ProductConfiguration());
-        modelBuilder.ApplyConfiguration(new OrderItemConfiguration());
-        modelBuilder.ApplyConfiguration(new OrderConfiguration());
-        modelBuilder.ApplyConfiguration(new UserConfiguration());
-        modelBuilder.ApplyConfiguration(new RoleConfiguration());
+        
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }
