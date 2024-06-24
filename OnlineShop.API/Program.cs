@@ -10,6 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 // builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -47,3 +48,4 @@ record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
+
