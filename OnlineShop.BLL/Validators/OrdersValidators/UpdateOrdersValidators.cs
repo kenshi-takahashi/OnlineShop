@@ -33,8 +33,6 @@ namespace OnlineShop.BLL.Validations
             if (description.Length < 10 || description.Length > 1000)
                 return false;
 
-          
-
             return true;
         }
     }

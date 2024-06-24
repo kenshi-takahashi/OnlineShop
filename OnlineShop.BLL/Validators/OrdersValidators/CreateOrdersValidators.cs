@@ -17,8 +17,6 @@ namespace OnlineShop.BLL.Validations
                 .MustAsync(BeUniqueName).WithMessage("Имя заказа должно быть уникальным.")
                 .Must(NotStartWithDigitOrSymbol).WithMessage("Имя заказа не должно начинаться с цифры или символа.")
                 .Must(NotContainDigitsOrSymbols).WithMessage("Имя заказа не должно содержать цифр или символов.");
-
-           
         }
 
         private async Task<bool> BeUniqueName(string name, CancellationToken cancellationToken)
@@ -44,9 +42,7 @@ namespace OnlineShop.BLL.Validations
 
             if (description.Length < 10 || description.Length > 1000)
                 return false;
-
-            
-
+                
             return true;
         }
     }

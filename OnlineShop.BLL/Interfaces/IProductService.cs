@@ -9,7 +9,6 @@ namespace OnlineShop.BLL.Interfaces
         Task CreateProductAsync(CreateProductDTO product);
         Task UpdateProductAsync(UpdateProductDTO product);
         Task DeleteProductAsync(int productId);
-
         Task<IEnumerable<ReadProductDTO>> GetProductsByCategoryIdAsync(int categoryId);
     }
 }
