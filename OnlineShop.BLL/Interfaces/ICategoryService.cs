@@ -1,6 +1,4 @@
 using OnlineShop.BLL.DTO.RequestDTO.CategoryRequestDTO;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace OnlineShop.BLL.Interfaces
 {

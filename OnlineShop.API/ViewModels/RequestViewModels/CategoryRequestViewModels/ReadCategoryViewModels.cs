@@ -1,6 +1,4 @@
-﻿
-
-namespace OnlineShop.API.Models.RequestModels.CategoryRequest
+﻿namespace OnlineShop.API.Models.RequestModels.CategoryRequest
 {
     public class ReadCategoryViewModels
     {

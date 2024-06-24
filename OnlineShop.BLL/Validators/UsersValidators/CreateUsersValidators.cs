@@ -2,8 +2,6 @@
 using OnlineShop.BLL.DTO.RequestDTO.UsersRequestDTO;
 using OnlineShop.BLL.Interfaces;
 using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace OnlineShop.BLL.Validations
 {
@@ -36,7 +34,7 @@ namespace OnlineShop.BLL.Validations
         }
 
         private async Task<bool> BeUniqueUsername(string username, CancellationToken cancellationToken)
-        { 
+        {
             var users = await _usersService.GetAllUsersAsync();
             return !users.Any(u => u.Username.Equals(username, System.StringComparison.OrdinalIgnoreCase));
         }
@@ -58,7 +56,6 @@ namespace OnlineShop.BLL.Validations
         }
     }
 
-    // Кастомное исключение для валидации
     public class CreateUsersValidationException : Exception
     {
         public CreateUsersValidationException(string message) : base(message) { }

@@ -8,6 +8,7 @@
         public decimal Price { get; set; }
         public int CategoryId { get; set; }
         public CategoryResponseViewModels Category { get; set; }
+        
         //public ICollection<OrderItemResponse> OrderItems { get; set; }
     }
 }

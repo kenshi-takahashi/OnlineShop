@@ -1,19 +1,31 @@
 ﻿using FluentValidation;
 using OnlineShop.BLL.DTO.RequestDTO.ProductRequestDTO;
+using OnlineShop.BLL.Interfaces;
 using System.Text.RegularExpressions;
 
 namespace OnlineShop.BLL.Validations
 {
-    public class UpdateProductValidator : AbstractValidator<UpdateProductDTO>
+    public class CreateProductValidator : AbstractValidator<CreateProductDTO>
     {
-        public UpdateProductValidator()
+        private readonly IProductService _productService;
+
+        public CreateProductValidator(IProductService productService)
         {
+            _productService = productService;
+
             RuleFor(product => product.Name)
+                .MustAsync(BeUniqueName).WithMessage("Имя продукта должно быть уникальным.")
                 .Must(NotStartWithDigitOrSymbol).WithMessage("Имя продукта не должно начинаться с цифры или символа.")
                 .Must(NotContainDigitsOrSymbols).WithMessage("Имя продукта не должно содержать цифр или символов.");
 
             RuleFor(product => product.Description)
                 .Must(IsValidDescription).WithMessage("Описание продукта должно содержать хотя бы 10 символов и не превышать 1000 символов.");
+        }
+
+        private async Task<bool> BeUniqueName(string name, CancellationToken cancellationToken)
+        {
+            var products = await _productService.GetAllProductsAsync();
+            return !products.Any(p => p.Name.Equals(name, System.StringComparison.OrdinalIgnoreCase));
         }
 
         private bool NotStartWithDigitOrSymbol(string name)
@@ -34,18 +46,14 @@ namespace OnlineShop.BLL.Validations
             if (description.Length < 10 || description.Length > 1000)
                 return false;
 
-            // Можно добавить другие проверки для описания по необходимости
-
             return true;
         }
     }
 
-    // Кастомное исключение для валидации
-    public class UpdateProductValidationException : Exception
+    public class CreateProductValidationException : Exception
     {
-        public UpdateProductValidationException(string message) : base(message) { }
+        public CreateProductValidationException(string message) : base(message) { }
 
-        // Добавим конструктор по умолчанию, если это нужно
-        public UpdateProductValidationException() : base() { }
+        public CreateProductValidationException() : base() { }
     }
 }

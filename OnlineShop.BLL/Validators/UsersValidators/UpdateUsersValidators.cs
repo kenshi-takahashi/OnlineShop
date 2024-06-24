@@ -2,8 +2,6 @@
 using OnlineShop.BLL.DTO.RequestDTO.UsersRequestDTO;
 using OnlineShop.BLL.Interfaces;
 using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace OnlineShop.BLL.Validations
 {
@@ -56,7 +54,7 @@ namespace OnlineShop.BLL.Validations
         {
             return !Regex.IsMatch(username, @"[\d\W]");
         }
-    } 
+    }
 
     public class UpdateUsersValidationException : Exception
     {

@@ -1,6 +1,6 @@
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
+
 public class OnlineShopDbContext : DbContext
 {
     public OnlineShopDbContext(DbContextOptions<OnlineShopDbContext> options) : base(options) { }

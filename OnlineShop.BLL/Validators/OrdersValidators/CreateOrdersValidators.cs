@@ -2,8 +2,6 @@
 using OnlineShop.BLL.DTO.RequestDTO.OrdersRequestDTO;
 using OnlineShop.BLL.Interfaces;
 using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace OnlineShop.BLL.Validations
 {
