@@ -1,4 +1,7 @@
 ﻿using OnlineShop.BLL.DTO.RequestDTO.OrdersRequestDTO;
+using OnlineShop.BLL.DTO.ResponseDTO;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OnlineShop.BLL.Interfaces
 {
@@ -6,9 +9,8 @@ namespace OnlineShop.BLL.Interfaces
     {
         Task<ReadOrdersDTO> GetOrdersByIdAsync(int orderId);
         Task<IEnumerable<ReadOrdersDTO>> GetAllOrdersAsync();
-        Task CreateOrdersAsync(CreateOrdersDTO order);
+        Task<ReadOrdersDTO> CreateOrdersAsync(CreateOrdersDTO order);
         Task UpdateOrdersAsync(UpdateOrdersDTO order);
-        Task DeleteOrdersAsync(int orderId); 
+        Task DeleteOrdersAsync(int orderId);
     }
 }
- 

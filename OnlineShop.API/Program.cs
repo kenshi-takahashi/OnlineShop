@@ -1,4 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using OnlineShop.API.Extensions;
+using MyOnlineShop.DAL;
+using OnlineShop.BLL.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,8 +12,13 @@ builder.Services.AddDbContext<OnlineShopDbContext>(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-// builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
+// Добавление репозиториев, сервисов и маппинга
+builder.Services.AddRepositories();
+builder.Services.AddServices();
+builder.Services.AddMappings();
+
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -21,26 +30,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthorization();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+app.MapControllers(); // Добавление маршрутов контроллеров
 
 app.Run();
 
@@ -48,4 +40,3 @@ record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
-
