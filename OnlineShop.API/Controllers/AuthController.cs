@@ -1,7 +1,7 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnlineShop.BLL.Interfaces;
 using OnlineShop.BLL.DTO.RequestDTO.UsersRequestDTO;
-using OnlineShop.BLL.DTO.ResponseDTO;
 using System.Threading.Tasks;
 
 namespace OnlineShop.API.Controllers
@@ -18,7 +18,8 @@ namespace OnlineShop.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(UserRegisterDTO model)
+        [AllowAnonymous]
+        public async Task<IActionResult> Register([FromBody] UserRegisterDTO model)
         {
             var result = await _authService.RegisterAsync(model);
             if (!result.Success)
@@ -29,7 +30,8 @@ namespace OnlineShop.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(UserLoginDTO model)
+        [AllowAnonymous]
+        public async Task<IActionResult> Login([FromBody] UserLoginDTO model)
         {
             var result = await _authService.LoginAsync(model);
             if (!result.Success)
@@ -37,6 +39,27 @@ namespace OnlineShop.API.Controllers
                 return BadRequest(result.Errors);
             }
             return Ok(result);
+        }
+
+        [HttpGet("test")]
+        [Authorize]
+        public IActionResult Test()
+        {
+            return Ok("Hello, Minimal API with JWT Authentication!");
+        }
+
+        [HttpGet("admin")]
+        [Authorize(Policy = "AdminOnly")]
+        public IActionResult AdminOnly()
+        {
+            return Ok("Hello, Admin!");
+        }
+
+        [HttpGet("user")]
+        [Authorize(Policy = "UserOnly")]
+        public IActionResult UserOnly()
+        {
+            return Ok("Hello, User!");
         }
     }
 }
