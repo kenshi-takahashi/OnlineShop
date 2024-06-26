@@ -1,15 +1,22 @@
 using Microsoft.EntityFrameworkCore;
+using OnlineShop.BLL.Interfaces;
+using OnlineShop.BLL.DTO.RequestDTO.UsersRequestDTO;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using OnlineShop.BLL.Services;
+using OnlineShop.DAL.Interfaces;
+using OnlineShop.DAL.Repositories;
+using Microsoft.AspNetCore.Identity;
+using System.Text;
+using OnlineShop.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<OnlineShopDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.ConfigureServices(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-// builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-
 
 var app = builder.Build();
 
@@ -42,10 +49,35 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast")
 .WithOpenApi();
 
+// Minimal API endpoints
+app.MapPost("/api/auth/register", async (IAuthService authService, UserRegisterDTO model) =>
+{
+    var result = await authService.RegisterAsync(model);
+    if (!result.Success)
+    {
+        return Results.BadRequest(result.Errors);
+    }
+    return Results.Ok(result);
+}).AllowAnonymous();
+
+app.MapPost("/api/auth/login", async (IAuthService authService, UserLoginDTO model) =>
+{
+    var result = await authService.LoginAsync(model);
+    if (!result.Success)
+    {
+        return Results.BadRequest(result.Errors);
+    }
+    return Results.Ok(result);
+}).AllowAnonymous();
+
+app.MapGet("/api/test", async () =>
+{
+    return Results.Ok("Hello, Minimal API with JWT Authentication!");
+}).RequireAuthorization();
+
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
-
