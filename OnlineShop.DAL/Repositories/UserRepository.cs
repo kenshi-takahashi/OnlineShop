@@ -9,9 +9,17 @@ namespace OnlineShop.DAL.Repositories
         {
         }
 
-        public async Task<User> GetByEmailAsync(string email)
+        public async Task AddAsync(User user)
         {
-            return await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
         }
+
+        public async Task<User> GetByEmailAsync(string email)
+            {
+                return await _context.Users
+                    .Include(u => u.Role) // Ensure role is loaded
+                    .SingleOrDefaultAsync(u => u.Email == email);
+            }
     }
 }

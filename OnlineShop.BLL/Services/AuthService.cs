@@ -96,27 +96,29 @@ namespace OnlineShop.BLL.Services
             };
         }
 
-        private string GenerateJwtToken(User user)
-{
-    var tokenHandler = new JwtSecurityTokenHandler();
-    var key = Encoding.ASCII.GetBytes(_configuration["JwtConfig:Secret"]);
-    var tokenDescriptor = new SecurityTokenDescriptor
+ private string GenerateJwtToken(User user)
     {
-        Subject = new ClaimsIdentity(new[]
-        {
-            new Claim("id", user.Id.ToString()),
-            new Claim(JwtRegisteredClaimNames.Email, user.Email),
-            new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new Claim("role", "user")  // Default role is user
-        }),
-        Expires = DateTime.UtcNow.AddHours(6),
-        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-    };
+        var key = Encoding.ASCII.GetBytes(_configuration["JwtConfig:Secret"]);
 
-    var token = tokenHandler.CreateToken(tokenDescriptor);
-    return tokenHandler.WriteToken(token);
-}
+        var claims = new List<Claim>
+        {
+            new Claim(JwtRegisteredClaimNames.Sub, user.Username),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new Claim(ClaimTypes.Role, user.Role.Name) // Assuming Role.Name is the role name string
+        };
+
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var tokenDescriptor = new SecurityTokenDescriptor
+        {
+            Subject = new ClaimsIdentity(claims),
+            Expires = DateTime.UtcNow.AddHours(1),
+            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+        };
+
+        var token = tokenHandler.CreateToken(tokenDescriptor);
+        return tokenHandler.WriteToken(token);
+    }
 
     }
 }
