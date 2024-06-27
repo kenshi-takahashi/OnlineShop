@@ -29,31 +29,41 @@ namespace OnlineShop.BLL.Services
 
         public async Task<AuthResult> RegisterAsync(UserRegisterDTO model)
         {
-            var existingUser = await _userRepository.GetByEmailAsync(model.Email);
-            if (existingUser != null)
+            var existingUser = await _userRepository.GetAllAsync();
+            if (existingUser.Any(u => u.Email == model.Email))
             {
                 return new AuthResult
                 {
-                    Success = false,
-                    Errors = new List<string> { "Email is already in use." }
+                    Errors = new[] { "User with this email already exists" }
                 };
             }
 
             var user = new User
             {
                 Username = model.Username,
-                Email = model.Email
+                Email = model.Email,
+                Password = _passwordHasher.HashPassword(null, model.Password),
+                RoleId = 2 // Assuming 2 is the RoleId for 'User'
             };
 
-            user.Password = _passwordHasher.HashPassword(user, model.Password);
-
-            await _userRepository.AddAsync(user);
+            try
+            {
+                await _userRepository.AddAsync(user);
+            }
+            catch (Exception ex)
+            {
+                return new AuthResult
+                {
+                    Errors = new[] { ex.Message }
+                };
+            }
 
             return new AuthResult
             {
                 Success = true
             };
         }
+
 
         public async Task<AuthResult> LoginAsync(UserLoginDTO model)
         {
