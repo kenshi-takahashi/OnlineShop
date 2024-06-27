@@ -29,6 +29,26 @@ namespace OnlineShop.API.Extensions
             // Add Validators
             // // Uncomment when services appear
             // services.AddValidatorsFromAssemblyContaining<CreateCategoryValidator>();
+
+            services.AddSingleton<IPasswordHasher<User>, PasswordHasher<User>>();
+
+            var key = Encoding.ASCII.GetBytes(configuration["JwtConfig:Secret"]);
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.SaveToken = true;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ClockSkew = TimeSpan.Zero
+                    };
+                });
+
+            services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
                 options.AddPolicy("UserOnly", policy => policy.RequireRole("User"));
