@@ -4,11 +4,10 @@ namespace OnlineShop.BLL.Interfaces
 {
     public interface IOrdersService
     {
-        Task<ReadOrdersDTO> GetOrdersByIdAsync(int orderId);
+        Task<ReadOrdersDTO> GetOrdersByIdAsync(int orderId); // Изменено на единственное число
         Task<IEnumerable<ReadOrdersDTO>> GetAllOrdersAsync();
-        Task CreateOrdersAsync(CreateOrdersDTO order);
+        Task<int> CreateOrdersAsync(CreateOrdersDTO order);
         Task UpdateOrdersAsync(UpdateOrdersDTO order);
-        Task DeleteOrdersAsync(int orderId); 
+        Task DeleteOrdersAsync(int orderId);
     }
 }
- 
