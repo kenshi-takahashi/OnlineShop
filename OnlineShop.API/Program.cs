@@ -1,5 +1,4 @@
 using OnlineShop.API.Extensions;
-using OnlineShop.Extensions;
 using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,8 +22,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.UseValidationMiddleware();
 
 app.MapControllers();
 
