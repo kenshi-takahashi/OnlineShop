@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Identity;
 using FluentValidation;
 using OnlineShop.BLL.Validations;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
+using OnlineShop.BLL.DTO.RequestDTO.CategoryRequestDTO;
+using OnlineShop.API.Filters;
 
 namespace OnlineShop.API.Extensions
 {
@@ -29,6 +31,11 @@ namespace OnlineShop.API.Extensions
             // Add Validators
             // // Uncomment when services appear
             // services.AddValidatorsFromAssemblyContaining<CreateCategoryValidator>();
+
+            services.AddControllers(options =>
+            {
+                options.Filters.Add<ValidationFilter>();
+            });
 
             services.AddSingleton<IPasswordHasher<User>, PasswordHasher<User>>();
 
