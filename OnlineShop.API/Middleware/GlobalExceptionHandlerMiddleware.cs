@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -81,6 +82,22 @@ public class GlobalExceptionHandlerMiddleware
             case NullReferenceException:
                 statusCode = HttpStatusCode.InternalServerError;
                 message = "A null reference occurred. Please try again later.";
+                break;
+            case Microsoft.EntityFrameworkCore.DbUpdateException:
+                statusCode = HttpStatusCode.InternalServerError;
+                message = "An error occurred while updating the database. Please try again later.";
+                break;
+            case BadHttpRequestException:
+                statusCode = HttpStatusCode.BadRequest;
+                message = "The request is invalid. Please check the input and try again.";
+                break;
+            case SqlException:
+                statusCode = HttpStatusCode.InternalServerError;
+                message = "A database error occurred. Please try again later.";
+                break;
+            default:
+                statusCode = HttpStatusCode.InternalServerError;
+                message = "An unexpected error occurred. Please try again later.";
                 break;
         }
 
