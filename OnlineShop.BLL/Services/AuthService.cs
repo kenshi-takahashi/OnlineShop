@@ -4,13 +4,11 @@ using OnlineShop.BLL.DTO.ResponseDTO;
 using OnlineShop.DAL.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Http; 
 
 namespace OnlineShop.BLL.Services
 {
@@ -19,12 +17,14 @@ namespace OnlineShop.BLL.Services
         private readonly IUserRepository _userRepository;
         private readonly IPasswordHasher<User> _passwordHasher;
         private readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AuthService(IUserRepository userRepository, IPasswordHasher<User> passwordHasher, IConfiguration configuration)
+        public AuthService(IHttpContextAccessor httpContextAccessor, IUserRepository userRepository, IPasswordHasher<User> passwordHasher, IConfiguration configuration)
         {
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
             _configuration = configuration;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<AuthResult> RegisterAsync(UserRegisterDTO model)
@@ -88,6 +88,15 @@ namespace OnlineShop.BLL.Services
             }
 
             var token = GenerateJwtToken(user);
+
+            // Сохранение токена в куки
+        _httpContextAccessor.HttpContext.Response.Cookies.Append("jwt", token, new CookieOptions
+        {
+            HttpOnly = true,
+            Secure = true,
+            SameSite = SameSiteMode.None, // Настройте SameSite по необходимости
+            Expires = DateTime.UtcNow.AddHours(1) // Настройте срок действия куки
+        });
 
             return new AuthResult
             {
