@@ -8,6 +8,8 @@ Log.Logger = new LoggerConfiguration()
     .WriteTo.File("Logs/app.log", rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
+builder.Host.UseSerilog();
+
 // Add services to the container.
 builder.Services.AddDbContext<OnlineShopDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -28,7 +30,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseRouting();
+
 app.UseHttpsRedirection();
+
+app.MapControllers();
 
 app.Run();
 
