@@ -2,7 +2,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnlineShop.BLL.Interfaces;
 using OnlineShop.BLL.DTO.RequestDTO.UsersRequestDTO;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using System.Net.Http.Headers;
 
 namespace OnlineShop.API.Controllers
 {
@@ -11,10 +12,12 @@ namespace OnlineShop.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService, IHttpContextAccessor httpContextAccessor)
         {
             _authService = authService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpPost("register")]
@@ -38,6 +41,7 @@ namespace OnlineShop.API.Controllers
             {
                 return BadRequest(result.Errors);
             }
+
             return Ok(result);
         }
 
@@ -60,6 +64,35 @@ namespace OnlineShop.API.Controllers
         public IActionResult UserOnly()
         {
             return Ok("Hello, User!");
+        }
+
+        [HttpGet("unprotected")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Unprotected()
+        {
+            // Пример отправки запроса к защищенному эндпоинту с добавлением JWT из куки в заголовок
+
+            var httpClient = new HttpClient();
+            var jwtFromCookie = _httpContextAccessor.HttpContext.Request.Cookies["jwt"];
+            if (jwtFromCookie != null)
+            {
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtFromCookie);
+            }
+
+            // Замените URL на ваш защищенный эндпоинт
+            var apiUrl = "http://localhost:5032/api/auth/user"; // Пример URL защищенного эндпоинта
+
+            HttpResponseMessage response = await httpClient.GetAsync(apiUrl);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                return Ok(content);
+            }
+            else
+            {
+                return BadRequest("Failed to access protected endpoint.");
+            }
         }
     }
 }

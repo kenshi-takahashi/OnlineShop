@@ -4,13 +4,11 @@ using OnlineShop.BLL.DTO.ResponseDTO;
 using OnlineShop.DAL.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Http; 
 
 namespace OnlineShop.BLL.Services
 {
@@ -19,12 +17,14 @@ namespace OnlineShop.BLL.Services
         private readonly IUserRepository _userRepository;
         private readonly IPasswordHasher<User> _passwordHasher;
         private readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AuthService(IUserRepository userRepository, IPasswordHasher<User> passwordHasher, IConfiguration configuration)
+        public AuthService(IHttpContextAccessor httpContextAccessor, IUserRepository userRepository, IPasswordHasher<User> passwordHasher, IConfiguration configuration)
         {
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
             _configuration = configuration;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<AuthResult> RegisterAsync(UserRegisterDTO model)
@@ -89,6 +89,15 @@ namespace OnlineShop.BLL.Services
 
             var token = GenerateJwtToken(user);
 
+            // Сохранение токена в куки
+        _httpContextAccessor.HttpContext.Response.Cookies.Append("jwt", token, new CookieOptions
+        {
+            HttpOnly = true,
+            Secure = true,
+            SameSite = SameSiteMode.None, // Настройте SameSite по необходимости
+            Expires = DateTime.UtcNow.AddHours(1) // Настройте срок действия куки
+        });
+
             return new AuthResult
             {
                 Success = true,
@@ -97,26 +106,30 @@ namespace OnlineShop.BLL.Services
         }
 
         private string GenerateJwtToken(User user)
-{
-    var tokenHandler = new JwtSecurityTokenHandler();
-    var key = Encoding.ASCII.GetBytes(_configuration["JwtConfig:Secret"]);
-    var tokenDescriptor = new SecurityTokenDescriptor
-    {
-        Subject = new ClaimsIdentity(new[]
         {
-            new Claim("id", user.Id.ToString()),
-            new Claim(JwtRegisteredClaimNames.Email, user.Email),
-            new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new Claim("role", "user")  // Default role is user
-        }),
-        Expires = DateTime.UtcNow.AddHours(6),
-        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-    };
+            var key = Encoding.ASCII.GetBytes(_configuration["JwtConfig:Secret"]);
 
-    var token = tokenHandler.CreateToken(tokenDescriptor);
-    return tokenHandler.WriteToken(token);
-}
+            var claims = new List<Claim>
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.Username),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role?.Name)
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenDescriptor = new SecurityTokenDescriptor
+        
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.UtcNow.AddHours(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
+
 
     }
 }

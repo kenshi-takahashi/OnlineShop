@@ -19,6 +19,7 @@ namespace OnlineShop.API.Extensions
     {
         public static void ConfigureServices(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddHttpContextAccessor();
             services.AddDbContext<OnlineShopDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
@@ -46,7 +47,7 @@ namespace OnlineShop.API.Extensions
                     options.RequireHttpsMetadata = false;
                     options.SaveToken = true;
                     options.TokenValidationParameters = new TokenValidationParameters
-                    {
+                    {   
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = new SymmetricSecurityKey(key),
                         ValidateIssuer = false,
